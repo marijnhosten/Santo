@@ -43,7 +43,7 @@ public class Webview extends Fragment {
                 return true;
             }
         });
-        wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/klantenoverzicht.jpg");
+        wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/index.html");
         return v;
     }
 
