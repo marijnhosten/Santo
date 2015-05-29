@@ -1,12 +1,15 @@
 package nmct.howest.be.testwebview;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -36,6 +39,8 @@ public class Webview extends Fragment {
 
         WebView wv = (WebView) v.findViewById(R.id.webview);
         wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setLoadWithOverviewMode(true);
+        wv.getSettings().setUseWideViewPort(true);
         wv.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -46,6 +51,7 @@ public class Webview extends Fragment {
         wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/index.html");
         return v;
     }
+
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
