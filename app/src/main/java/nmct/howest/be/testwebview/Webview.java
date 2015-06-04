@@ -6,10 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -18,6 +20,7 @@ import android.webkit.WebViewClient;
 public class Webview extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    public WebView wv;
 
     public Webview() {
         // Required empty public constructor
@@ -37,20 +40,44 @@ public class Webview extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_webview, container, false);
 
-        WebView wv = (WebView) v.findViewById(R.id.webview);
+        wv = (WebView) v.findViewById(R.id.webview);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setUseWideViewPort(true);
-        wv.setWebViewClient(new WebViewClient(){
+        wv.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
         });
-        wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/index.html");
+        wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/klantenoverzicht.html");
+
+        wv.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    WebView webView = (WebView) v;
+
+                    switch(keyCode)
+                    {
+                        case KeyEvent.KEYCODE_BACK:
+                            if(webView.canGoBack())
+                            {
+                                webView.goBack();
+                                return true;
+                            }
+                            break;
+                    }
+                }
+
+                return false;
+            }
+        });
         return v;
     }
+
 
 
     public void onButtonPressed(Uri uri) {

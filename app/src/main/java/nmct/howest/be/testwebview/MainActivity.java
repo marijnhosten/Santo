@@ -3,8 +3,10 @@ package nmct.howest.be.testwebview;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 
 public class MainActivity extends Activity implements Webview.OnFragmentInteractionListener{
@@ -14,9 +16,8 @@ public class MainActivity extends Activity implements Webview.OnFragmentInteract
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFragmentManager().beginTransaction().replace(R.id.container, new Webview(), "WebView").commit();
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
