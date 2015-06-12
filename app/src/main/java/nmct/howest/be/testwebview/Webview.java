@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.net.CookieManager;
 
 
 public class Webview extends Fragment {
@@ -51,7 +52,7 @@ public class Webview extends Fragment {
                 return true;
             }
         });
-        wv.loadUrl("http://student.howest.be/jef.hellemans/JEF/santo/klantenoverzicht.html");
+        wv.loadUrl("http:student.howest.be/jef.hellemans/JEF/Santo/klantdetail.html");
 
         wv.setOnKeyListener(new View.OnKeyListener() {
             @Override
