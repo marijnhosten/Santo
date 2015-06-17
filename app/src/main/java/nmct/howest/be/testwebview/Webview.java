@@ -1,6 +1,7 @@
 package nmct.howest.be.testwebview;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -33,6 +36,9 @@ public class Webview extends Fragment {
         if (getArguments() != null) {
 
         }
+
+
+
     }
 
     @Override
@@ -45,6 +51,16 @@ public class Webview extends Fragment {
         wv.getSettings().setJavaScriptEnabled(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setUseWideViewPort(true);
+        wv.getSettings().setSaveFormData(false);
+
+        wv.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                return super.onJsAlert(view, url, message, result);
+            }
+
+        });
+
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -52,7 +68,8 @@ public class Webview extends Fragment {
                 return true;
             }
         });
-        wv.loadUrl("http:student.howest.be/jef.hellemans/JEF/Santo/klantdetail.html");
+
+        wv.loadUrl("http://santo.azurewebsites.net");
 
         wv.setOnKeyListener(new View.OnKeyListener() {
             @Override
